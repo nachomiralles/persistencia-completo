@@ -106,4 +106,9 @@ public class Controller : MonoBehaviour {
         escalaLocal.x *= -1;
         transform.localScale = escalaLocal;
     }
+
+    public void playerKilled()
+    {
+        Time.timeScale = 0;
+    }
 }

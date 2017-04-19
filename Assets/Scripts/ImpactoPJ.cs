@@ -5,9 +5,13 @@ using UnityEngine;
 public class ImpactoPJ : MonoBehaviour {
 
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        print("Algo toca: " + collision);
-
+        if (other.tag == "EnemyTower")
+        {
+            Destroy(other.gameObject);
+        }
+        
     }
+
 }

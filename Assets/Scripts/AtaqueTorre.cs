@@ -9,6 +9,7 @@ public class AtaqueTorre : MonoBehaviour {
     public Transform arma;
     private float cadenceTime = 0.5f;
     private float lastShootTime = 0;
+    public int towerStrength;
 
 
 	void Start () {
@@ -25,7 +26,7 @@ public class AtaqueTorre : MonoBehaviour {
         if (Vector2.Distance(transform.position, jugador.position)<6  && Time.time-lastShootTime>cadenceTime)
         {
             Transform fuego = (Transform)Instantiate(arma, transform.position, Quaternion.identity);
-            fuego.GetComponent<Rigidbody2D>().AddForce( (jugador.position - transform.position) * 300);
+            fuego.GetComponent<Rigidbody2D>().AddForce( (jugador.position - transform.position) * towerStrength);
             Destroy(fuego.gameObject, 2);
             lastShootTime = Time.time;
         }
