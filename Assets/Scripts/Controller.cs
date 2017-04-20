@@ -7,17 +7,13 @@ public class Controller : MonoBehaviour {
     public float velocity = 10.0f;
     public int strength;
 
-
     bool mirandoDerecha = true;
     bool mirandoArriba = false;
-
  
     Vector2 direccionMirada = Vector2.down;
 
     public Transform arma;
     public Transform posicionInicialProyectil;
-
-
 
     Animator anim;
     Rigidbody2D miRigidBody;
@@ -26,7 +22,6 @@ public class Controller : MonoBehaviour {
     {
         miRigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
 	void FixedUpdate () {
@@ -40,16 +35,9 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Transform espada = (Transform)Instantiate(arma, posicionInicialProyectil.position, posicionInicialProyectil.rotation);
-
-          
-
-            espada.GetComponent<Rigidbody2D>().AddForce(direccionMirada * strength);
-
-
-
+            espada.GetComponent<Rigidbody2D>().AddForce(direccionMirada * strength * 100);
             Destroy(espada.gameObject, 2);
         }
-
     }
 
     void CheckFacing()
@@ -110,5 +98,6 @@ public class Controller : MonoBehaviour {
     public void playerKilled()
     {
         Time.timeScale = 0;
+
     }
 }
