@@ -13,7 +13,33 @@ public class StatsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        fuerzaText.text = playerController.strength.ToString();
-        velocidadText.text = playerController.velocity.ToString();
+        fuerzaText.text = StaticPersonaje.instance.fuerza.ToString();
+        velocidadText.text = StaticPersonaje.instance.velocidad.ToString();
+        SubirBajarFuerza();
+        SubirBajarVelocidad();
+
+    }
+
+    void SubirBajarFuerza()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            StaticPersonaje.instance.fuerza++;
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            StaticPersonaje.instance.fuerza--;
+        }
+    }
+    void SubirBajarVelocidad()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StaticPersonaje.instance.velocidad++;
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            StaticPersonaje.instance.velocidad--;
+        }
     }
 }

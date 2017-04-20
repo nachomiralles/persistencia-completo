@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour {
 
-    public float velocity = 10.0f;
-    public int strength;
+
 
     bool mirandoDerecha = true;
     bool mirandoArriba = false;
@@ -35,7 +34,7 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Transform espada = (Transform)Instantiate(arma, posicionInicialProyectil.position, posicionInicialProyectil.rotation);
-            espada.GetComponent<Rigidbody2D>().AddForce(direccionMirada * strength * 100);
+            espada.GetComponent<Rigidbody2D>().AddForce(direccionMirada * StaticPersonaje.instance.fuerza * 100);
             Destroy(espada.gameObject, 2);
         }
     }
@@ -65,7 +64,7 @@ public class Controller : MonoBehaviour {
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
-        miRigidBody.velocity = new Vector2(moveX * velocity, moveY * velocity);
+        miRigidBody.velocity = new Vector2(moveX * StaticPersonaje.instance.velocidad, moveY * StaticPersonaje.instance.velocidad);
         if (moveX != 0) anim.SetBool("movingRight", true);
         else anim.SetBool("movingRight", false);
         if (moveY != 0) anim.SetBool("movingDown", true);
