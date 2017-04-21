@@ -13,7 +13,9 @@ public class InterfaceSaveLoad : MonoBehaviour {
 
     public void Load()
     {
+        //StaticPersonaje.instance.recienCargado = true;
         StaticPersonaje.instance.Cargar();
+        
         Time.timeScale = 1;
         SceneManager.LoadScene("Juego");
         

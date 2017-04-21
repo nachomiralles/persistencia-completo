@@ -16,9 +16,14 @@ public class StaticPersonaje : MonoBehaviour {
     public int velocidad;
     public int fuerza;
 
+    public float posicionX;
+    public float posicionY;
+
+    public bool recienCargado;
 
     void Awake()
     {
+       
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -28,7 +33,10 @@ public class StaticPersonaje : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+
     }
+
 
     public void Guardar()
     {
@@ -37,7 +45,6 @@ public class StaticPersonaje : MonoBehaviour {
             string nombreFichero = "PartidGuardada";
             BinaryFormatter formateador = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + "/" + nombreFichero + ".dat");
-            print(Application.persistentDataPath);
 
             DatosJugador data = new DatosJugador();
             data.velocidad = this.velocidad;
@@ -45,11 +52,8 @@ public class StaticPersonaje : MonoBehaviour {
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             data.posicionX = player.position.x;
             data.posicionY = player.position.y;
-
-
             formateador.Serialize(file, data);
             file.Close();
-            print("guardado");
 
         }
         catch(Exception e)
@@ -69,9 +73,9 @@ public class StaticPersonaje : MonoBehaviour {
             file.Close();
             this.velocidad = data.velocidad;
             this.fuerza = data.fuerza;
-
-            Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            player.position = new Vector2(data.posicionX, data.posicionY);
+            this.posicionX = data.posicionX;
+            this.posicionY = data.posicionY;
+            this.recienCargado = true;
         }
         else
         {
@@ -83,8 +87,8 @@ public class StaticPersonaje : MonoBehaviour {
     {
         velocidad = velocidadBasica;
         fuerza = fuerzaBasica;
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-        player.position = new Vector2(0, 0);
+        this.posicionX = 0;
+        this.posicionY = 0;
     }
 }
 

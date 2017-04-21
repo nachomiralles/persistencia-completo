@@ -21,6 +21,8 @@ public class Controller : MonoBehaviour {
     {
         miRigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        transform.position = new Vector2(StaticPersonaje.instance.posicionX, StaticPersonaje.instance.posicionY);
     }
 
 	void FixedUpdate () {
